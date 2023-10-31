@@ -37,3 +37,26 @@ Route::get('/hello', function () {
 Route::get('/coba', function () {
     return view('coba');
 });
+
+Route::get('/dashboard', function () {
+    $data = [
+        [
+            'nama' => 'alfin kamil',
+            'nim' => 89839893,
+            'tetala' => 'Pamekasan',
+            'kelas' => 'Kelas-A',
+            'alamat' => 'Sana Tengah',
+            'umur' => '20'
+        ],
+        [
+            'nama' => 'alfin kamil',
+            'nim' => 89839893,
+            'tetala' => 'Pamekasan',
+            'kelas' => 'Kelas-A',
+            'alamat' => 'Sana Tengah',
+            'umur' => '20'
+        ],
+    ];
+
+    return view('backend.index', compact('data'));
+});
