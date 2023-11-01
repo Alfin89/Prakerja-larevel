@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// $data = [
+//     [
+//         'nama' => 'alfin kamil',
+//         'nim' => 89839893,
+//         'tetala' => 'Pamekasan',
+//         'kelas' => 'Kelas-A',
+//         'alamat' => 'Sana Tengah',
+//         'umur' => '20'
+//     ],
+//     [
+//         'nama' => 'alfin kamil',
+//         'nim' => 89839893,
+//         'tetala' => 'Pamekasan',
+//         'kelas' => 'Kelas-A',
+//         'alamat' => 'Sana Tengah',
+//         'umur' => '20'
+//     ],
+// ];
 Route::get('/', function () {
     return view('welcome');
 });
@@ -38,25 +57,10 @@ Route::get('/coba', function () {
     return view('coba');
 });
 
-Route::get('/dashboard', function () {
-    $data = [
-        [
-            'nama' => 'alfin kamil',
-            'nim' => 89839893,
-            'tetala' => 'Pamekasan',
-            'kelas' => 'Kelas-A',
-            'alamat' => 'Sana Tengah',
-            'umur' => '20'
-        ],
-        [
-            'nama' => 'alfin kamil',
-            'nim' => 89839893,
-            'tetala' => 'Pamekasan',
-            'kelas' => 'Kelas-A',
-            'alamat' => 'Sana Tengah',
-            'umur' => '20'
-        ],
-    ];
-
-    return view('backend.index', compact('data'));
-});
+Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
+Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
+Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
+Route::get('/siswa/{id}', [SiswaController::class, 'show'])->name('siswa.show');
+Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit'])->name('siswa.edit');
+Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::delete('/siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.delete');
